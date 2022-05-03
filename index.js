@@ -36,12 +36,66 @@ async function run() {
         //using get for one data 
         app.get('/inventory/:id',async(req,res)=>{
           const id = req.params.id
-          console.log(id)
-          const query={_id:ObjectId(id)}
-          const result = await inventoryCollection.findOne(query)
-          res.send(result)
-  
+            // console.log(id)
+            const query={_id:ObjectId(id)}
+            const result = await inventoryCollection.findOne(query)
+            res.send(result)
         })
+
+        //using get for load  email  data 
+        // app.get('/inventory',async(req,res)=>{
+        //   const email =
+         
+        //   const cursor = inventoryCollection.find()
+        //   const result = await cursor.toArray()
+        //   res.send(result)
+  
+        // })
+        
+        // using update for quantity
+        app.put('/inventory/:id',async(req,res)=>{
+          const item= req.body
+          console.log(item);
+          const quantity=parseInt(req.body.quantity)      
+          const newQuantity = quantity-1;
+          const id = req.params.id
+          const filter ={_id:ObjectId(id)}
+          const options = { upsert: true };
+          const updateDoc = {
+            $set: {
+             quantity : newQuantity
+            },
+          };
+          const result = await inventoryCollection.updateOne(filter, updateDoc, options);
+          res.send(result)
+
+        })
+        // using update for add /restock quantity
+        app.put('/inventory/:id',async(req,res)=>{
+          const item= req.body
+          console.log(item);
+        })
+        app.put('/inventory/:id',async(req,res)=>{
+          const item= req.body
+          console.log(item);
+          
+          const id = req.params.id
+          console.log(id);
+          const filter ={_id:ObjectId(id)}
+          const options = { upsert: true };
+          const updateDoc = {
+            $set: {
+            //  quantity : newQuantity
+            },
+          };
+          const result = await inventoryCollection.updateOne(filter, updateDoc, options);
+          res.send(result)
+
+        })
+
+
+
+
   
         //using post for add data to server
         app.post('/inventory',async(req,res)=>{
