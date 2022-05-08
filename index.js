@@ -118,25 +118,7 @@ async function run() {
       res.send(result)
 
     })
-    // using update for add /restock quantity
-
-    // app.put('/inventory/:id',async(req,res)=>{
-    //   const item= req.body
-    //   console.log(item);
-    //   const quantity=parseInt(req.body.quantity)  
-    //   const id = req.params.id
-    //   console.log(id);
-    //   const filter ={_id:ObjectId(id)}
-    //   const options = { upsert: true };
-    //   const updateDoc = {
-    //     $set: {
-    //     //  quantity : newQuantity
-    //     },
-    //   };
-    //   const result = await inventoryCollection.updateOne(filter, updateDoc, options);
-    //   res.send(result)
-
-    // })
+    
 
     app.get('/myItem', async (req, res) => {
       console.log(req.query.email);
@@ -197,15 +179,7 @@ async function run() {
     })
 
 
-    //using delete to remove data
-
-    // app.delete('/inventory/:id', async (req, res) => {
-    //   const id = req.params.id
-    //   const query = { _id: ObjectId(id) }
-    //   const result = await inventoryCollection.deleteOne(query)
-    //   res.send(result)
-
-    // })
+    
 
 
 
